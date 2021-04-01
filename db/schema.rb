@@ -19,7 +19,14 @@ ActiveRecord::Schema.define(version: 2021_04_01_141034) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-
+    t.string "brand"
+    t.string "style"
+    t.string "color"
+    t.integer "year"
+    t.string "vin_number"
+    t.integer "user_id"
+    t.string "model"
+    t.float "price"
   end
 
 end
