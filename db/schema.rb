@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_141034) do
     t.string "vin_number"
     t.integer "user_id"
     t.string "model"
-    t.float "price"
+    t.decimal "price", precision: 8, scale: 2
   end
 
 end

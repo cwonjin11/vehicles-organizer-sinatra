@@ -20,6 +20,12 @@
 
       <footer class="branding">
         <small>&copy; 2021 <strong>VehiclesOrganizer</strong></small>
+          <% if logged_in? %>
+          <small><strong><a href="/logout">Log Out</a></strong></small>
+          <% else %>
+          <small><strong><a href="/signup">Sign Up</a></strong></small> /
+          <small><strong><a href="/login">Log In</a></strong></small>
+          <% end %>
       </footer>
     </div>
 

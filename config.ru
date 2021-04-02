@@ -5,3 +5,11 @@ require './config/environment'
 # end
 
 run ApplicationController
+use UserController
+use VehicleController
+
+#model = all of the relationships are 
+#crud methods live in controllers
+
+#other then run, use "use"
+
