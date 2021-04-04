@@ -1,0 +1,23 @@
+
+<h1>Vehicles details</h1> 
+
+<h2></h2>
+<h3>Brand: <%= @vehicle.brand %></h3>
+<h3>Model: <%= @vehicle.model %></h3>
+<h3>Year: <%= @vehicle.year %></h3>
+<h3>Style: <%= @vehicle.style %></h3>
+<h3>Color: <%= @vehicle.color %></h3>
+
+<h3>Price: $<%= @vehicle.price %></h3>
+<h3>Vin Number: <%= @vehicle.vin_number %></h3>
+<br>
+
+<h2></h2>
+<a href="/vehicles/<%= @vehicle.id%>/edit"> <button type="button">Edit Vehicle </button> </a> 
+<br><br>
+<form action="/vehicles/<%= @vehicle.id %>/delete" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="DELETE"/>
+  <input type="submit" value="Delete Vehicle">
+</form>
+<br>
+<a href="/vehicles"> <button type="button">Back to your lists </button> </a> 
