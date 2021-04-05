@@ -12,13 +12,12 @@ class VehicleController < ApplicationController
     end
 
     get '/vehicles/:id' do
-        @vehicle = Vehicle.find(params[:id])
-          if logged_in? && @vehicle.user_id == current_user.id
-            # @schedules = Schedule.all
-            erb :'vehicles/show'
-          else
-            redirect to('/login')
-          end 
-      end
+      @vehicle = Vehicle.find(params[:id])
+        if logged_in? && @vehicle.user_id == current_user.id
+          erb :'vehicles/show'
+        else
+          redirect to('/login')
+        end 
+    end
 
 end

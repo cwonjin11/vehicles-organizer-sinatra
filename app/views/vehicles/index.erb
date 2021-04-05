@@ -1,16 +1,15 @@
 
 <h1> Hello, <%= current_user.username %> !! </h1>
+
 <h2></h2>
 
 <h3> Here is the list of your vehicles!</h3>
-<h3>You can ADD, EDIT or DELETE your vehicles. </h3><br>
+<h3>You can ADD, EDIT or DELETE your vehicles. </h3>
 
-<ul>
-<%@vehicles.order(:brand, :model, year: :desc).map do |v|%>
-<a href="vehicles/<%=v.id%>"> <li> <%= v.brand %> <%=v.model %> <%=v.year%> </a></li>
-<%end%>
-</ul>
-
-
+<ol>
+    <% @vehicles.order(:brand, :model, year: :desc).each do |vehicle|%>
+    <li><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></li>
+    <% end %>
+</ol>
 
 

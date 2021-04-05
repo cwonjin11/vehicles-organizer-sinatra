@@ -1,6 +1,6 @@
 @media screen {
   /* --- Reset Styles --- */
-  * {
+  {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: rgb(173, 230, 197);
+    background-color: rgb(173, 198, 230);
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -44,7 +44,7 @@
 
   h3 {
     font-size: 18px;
-    line-height: 36px;
+    line-height: 18px;
   }
 
   p {
@@ -81,6 +81,19 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+  
+  ol {
+    background: #96f0eb;
+    padding: 20px;
+  }
+
+  ol li {
+    background: #96f0eb;
+    padding: 4px;
+    margin-left: 20px;
+  }
+
+
 }
 
 @media screen and (max-width: 600px) {

@@ -1,5 +1,5 @@
 require './config/environment'
-
+require 'active_support/core_ext/numeric/conversions' #Enables the formatting of numbers in a variety of ways.
 class ApplicationController < Sinatra::Base
 
   configure do
