@@ -1,0 +1,48 @@
+<h1>Create a new Vehicle</h1>
+<h2></h2>
+<% if @errors %>
+   <% @errors.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+    <% end %>
+<% end %>
+
+<ul>
+    <form action="/vehicles" method="POST">
+    <li>
+        <label for="brand">Brand: </label><br>
+        <input type="text" id="brand" name="brand" ><br>
+    </li>
+    <li>
+        <label for="model">Model: </label><br>
+        <input type="text" id="model" name="model" ><br>
+    </li>
+    <li>
+        <label for="year">Year: </label><br>
+        <input type="integer" id="year" name="year" ><br>
+    </li>
+    <li>
+        <label for="style">Style: </label><br>
+        <input type="text" id="style" name="style" ><br>
+    </li>
+    <li>
+        <label for="color">Color: </label><br>
+        <input type="text" id="color" name="color" pattern='[A-Za-z\\s]*'/ ><br>
+    </li>
+    <li>
+        <label for="price">Price: </label><br>
+        <input type="number" id="price" name="price" min="0" step="0.01" ><br>
+    </li>
+    <li>
+        <label for="vin_number">VIN #: </label><br>
+        <input type="text" id="vin_number" name="vin_number" minlength="17" maxlength="17"><br>
+    </li>
+
+</ul>  
+
+  <input type="submit" value="Create a Vehicle">
+  
+  <br>
+  <br>
+</form>
+
+<a href="/vehicles"> <button type="button">Back to your lists </button> </a> 

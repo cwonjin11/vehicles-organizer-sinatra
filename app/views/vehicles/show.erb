@@ -7,10 +7,8 @@
 <h3>Year: <%= @vehicle.year %></h3>
 <h3>Style: <%= @vehicle.style %></h3>
 <h3>Color: <%= @vehicle.color %></h3>
-
 <h3>Price: <%= @vehicle.price.to_s(:currency)  %></h3> <!--Produce a string representation of a number as currency.-->
 <h3>Vin Number: <%= @vehicle.vin_number %></h3>
-<br>
 
 <h2></h2>
 <a href="/vehicles/<%= @vehicle.id%>/edit"> <button type="button">Edit Vehicle </button> </a> 

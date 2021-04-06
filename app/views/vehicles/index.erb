@@ -3,9 +3,9 @@
 
 <h2></h2>
 
-<h3> Here is the list of your vehicles!</h3>
+<h3>You have total <%= current_user.vehicles.size %> cars!</h3>
 <h3>You can ADD, EDIT or DELETE your vehicles. </h3>
-
+  <a href="/vehicles/new" class="button1"> Add a new vehicle </a>
 <ol>
     <% @vehicles.order(:brand, :model, year: :desc).each do |vehicle|%>
     <li><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></li>
