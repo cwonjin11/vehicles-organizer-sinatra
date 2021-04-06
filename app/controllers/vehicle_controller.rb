@@ -21,14 +21,16 @@ class VehicleController < ApplicationController
 
     post '/vehicles' do
       if logged_in?
+        # binding.pry
         @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
           style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
         # binding.pry
+        
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
         else
-          redirect to("/vehicles") 
+          redirect to("/vehicles/#{@vehicle.id}") 
         end
       else
         redirect to('/login')
