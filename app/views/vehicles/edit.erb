@@ -1,5 +1,8 @@
+
 <h1>Edit your vehicle</h1>
 <h2> <%= @vehicle.brand %> <%= @vehicle.model %> <%= @vehicle.year %></h2>
+
+
 <% if @errors %>
   <% @errors.each do |error| %>
     <p style="color: red;"><%= error %></p>
@@ -10,7 +13,7 @@
     <form action="/vehicles/<%= @vehicle.id %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="patch"/>
     <li>
-        <label for="brand">Brand: </label><br>
+        <label for="brand">Make: </label><br>
         <input type="text" id="brand" name="brand" value="<%= @vehicle.brand %>"><br>
     </li>
     <li>
@@ -27,7 +30,7 @@
     </li>
     <li>
         <label for="color">Color: </label><br>
-        <input type="text" id="color" name="color" pattern='[A-Za-z\\s]*'/ value="<%= @vehicle.color %>"><br>
+        <input type="text" id="color" name="color" value="<%= @vehicle.color %>"><br>
     </li>
     <li>
         <label for="price">Price: </label><br>
@@ -35,7 +38,7 @@
     </li>
     <li>
         <label for="vin_number">VIN #: </label><br>
-        <input type="text" id="vin_number" name="vin_number" minlength="17" maxlength="17" value="<%= @vehicle.vin_number %>"><br>
+        <input type="text" id="vin_number" name="vin_number" pattern="[A-Za-z0-9]+" maxlength="17" value="<%= @vehicle.vin_number %>"><br>
     </li>
 </ul>
 

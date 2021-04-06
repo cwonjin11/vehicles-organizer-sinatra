@@ -1,16 +1,18 @@
-
+<ul>
 <h1>Vehicles details</h1> 
-
+</ul>
 <h2></h2>
-<h3>Brand: <%= @vehicle.brand %></h3>
-<h3>Model: <%= @vehicle.model %></h3>
-<h3>Year: <%= @vehicle.year %></h3>
-<h3>Style: <%= @vehicle.style %></h3>
-<h3>Color: <%= @vehicle.color %></h3>
-<h3>Price: <%= @vehicle.price.to_s(:currency)  %></h3> <!--Produce a string representation of a number as currency.-->
-<h3>Vin Number: <%= @vehicle.vin_number %></h3>
-
+  <ul>
+    <li>Brand: <%= @vehicle.brand %></li>
+    <li>Model: <%= @vehicle.model %></li>
+    <li>Year: <%= @vehicle.year %></li>
+    <li>Style: <%= @vehicle.style %></li>
+    <li>Color: <%= @vehicle.color %></li>
+    <li>Price: <%= @vehicle.price.to_s(:currency)  %></li> <!--Produce a string representation of a number as currency.-->
+    <li>Vin Number: <%= @vehicle.vin_number %></li>
+  </ul>
 <h2></h2>
+
 <a href="/vehicles/<%= @vehicle.id%>/edit"> <button type="button">Edit Vehicle </button> </a> 
 <br><br>
 <form action="/vehicles/<%= @vehicle.id %>/delete" method="POST">
