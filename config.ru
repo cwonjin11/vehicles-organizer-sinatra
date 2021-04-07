@@ -7,8 +7,8 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 
 use Rack::MethodOverride
 run ApplicationController
-use UserController
-use VehicleController
+use UsersController
+use VehiclesController
 
 
 

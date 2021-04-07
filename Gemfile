@@ -13,7 +13,6 @@ gem 'bcrypt'
 gem 'tux'
 gem 'faker'
 gem 'sinatra-flash'
-gem 'simple-password-gen'
 
 group :test do
   gem 'rspec'

@@ -1,5 +1,5 @@
 
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
     get '/signup' do
         if !session[:user_id]
@@ -37,7 +37,7 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             redirect to('/vehicles')
           else
-            @errors = "Authentication Error. Please check username and/or password and try again."
+            @errors = "Please check you username and/or password."
             erb :'users/login'
           end
     end

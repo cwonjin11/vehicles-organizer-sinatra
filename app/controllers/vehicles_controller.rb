@@ -1,4 +1,4 @@
-class VehicleController < ApplicationController
+class VehiclesController < ApplicationController
 
     get '/vehicles' do
         # binding.pry
@@ -21,10 +21,8 @@ class VehicleController < ApplicationController
 
     post '/vehicles' do
       if logged_in?
-        # binding.pry
         @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
           style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
-        # binding.pry
         
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
@@ -38,7 +36,6 @@ class VehicleController < ApplicationController
     end  
 
     get '/vehicles/:id' do
-      # binding.pry
       @vehicle = Vehicle.find(params[:id])
         if logged_in? && @vehicle.user == current_user
           erb :'vehicles/show'
@@ -71,7 +68,6 @@ class VehicleController < ApplicationController
       @vehicle.color = params[:color]
       @vehicle.price = params[:price]
       @vehicle.vin_number = params[:vin_number]
-      # @vehicles = Vehicle.all
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/edit'
