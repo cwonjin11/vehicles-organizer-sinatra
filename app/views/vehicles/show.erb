@@ -1,8 +1,8 @@
-<ul>
+
 <h1>Vehicles details</h1> 
-</ul>
-<h2></h2>
-  <ul>
+
+
+  <ul><b>
     <li>Brand: <%= @vehicle.brand %></li>
     <li>Model: <%= @vehicle.model %></li>
     <li>Year: <%= @vehicle.year %></li>
@@ -10,7 +10,7 @@
     <li>Color: <%= @vehicle.color %></li>
     <li>Price: <%= @vehicle.price.to_s(:currency)  %></li> <!--Produce a string representation of a number as currency.-->
     <li>Vin Number: <%= @vehicle.vin_number %></li>
-  </ul>
+  </b></ul>
 <h2></h2>
 
 <a href="/vehicles/<%= @vehicle.id%>/edit"> <button type="button">Edit Vehicle </button> </a> 
@@ -20,4 +20,4 @@
   <input type="submit" value="Delete Vehicle">
 </form>
 <br>
-<a href="/vehicles"> <button type="button">Back to your lists </button> </a> 
+<a href="/vehicles"> <button type="button">Back to your list </button> </a> 
