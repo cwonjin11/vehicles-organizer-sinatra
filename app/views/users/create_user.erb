@@ -1,26 +1,21 @@
 <h1>Sign up to Vehicle Organizer!</h1><br><br>
-<h2></h2>
+
 <% if @errors %>
   <% @errors.each do |error| %>
     <p style="color: red;"><%= error %></p>
   <% end %>
 <% end %>
-
- <br>
+<ul>
 <form method="POST" action ='/signup'>
 
-  <label for="username">Username: </label>
-  <input type="text" name="username" id="username">
-    <br>
-    <br>
-  <label for="email">E-mail: </label>
-  <input type="email" name="email" id="email" >
-    <br>
-    <br>
-  <label for="password">Password: </label>
-  <input type="password" name="password" id="password" >
-    <br>
-    <br>
+  <label for="username">Username: </label><br>
+  <input type="text" name="username" id="username"><br>
+  <label for="email">E-mail: </label><br>
+  <input type="email" name="email" id="email" ><br>
+  <label for="password">Password: </label><br>
+  <input type="password" name="password" id="password" ><br><br>
+
   <input type="submit" value="Sign Up"/>
 
 </form>
+</ul>
