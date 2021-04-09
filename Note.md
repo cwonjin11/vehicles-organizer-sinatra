@@ -23,3 +23,14 @@ end
 # if ActiveRecord::Migrator.needs_migration?
 #   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 # end
+
+
+
+css
+
+  h2 {
+    border-bottom: 2px solid #ccc;
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
