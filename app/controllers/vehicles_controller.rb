@@ -13,6 +13,7 @@ class VehiclesController < ApplicationController
 
     get '/vehicles/new' do
       if logged_in?
+        @vehicle = Vehicle.new(params)
         erb :'vehicles/new'
       else
         redirect to('/login')
@@ -24,11 +25,12 @@ class VehiclesController < ApplicationController
         @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
           style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
         
-        if !@vehicle.save
+        if !@vehicle.save #you dont want to save always. Validation needed.
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
         else
-          redirect to("/vehicles/#{@vehicle.id}") 
+          redirect to("/vehicles/#{@vehicle.id}") #you may delete @ sign "#{@vehicle.id}"
+          #if you want to pass the instace to erb, we need instance variable. other than that, @ is not necessarily needed.
         end
       else
         redirect to('/login')
@@ -68,6 +70,8 @@ class VehiclesController < ApplicationController
       @vehicle.color = params[:color]
       @vehicle.price = params[:price]
       @vehicle.vin_number = params[:vin_number]
+      #@vehicle.update(params)
+      
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/edit'

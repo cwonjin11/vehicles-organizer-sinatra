@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         @user = User.new(username: params["username"], email: params["email"], password: params["password"])
         if !@user.save 
             @errors = @user.errors.full_messages
+            # binding.pry
             erb :'users/create_user'
         else 
             session[:user_id] = @user.id
@@ -22,8 +23,10 @@ class UsersController < ApplicationController
     
     
     get '/login' do
+       
         if !session[:user_id]
             erb :'users/login'
+            # binding.pry
         else
             redirect to('/vehicles')
             
@@ -32,9 +35,14 @@ class UsersController < ApplicationController
       
       
     post '/login' do
+        # binding.pry
         @user = User.find_by(username: params[:username])
+        # binding.pry
+
           if @user && @user.authenticate(params[:password])
+            
             session[:user_id] = @user.id
+            
             redirect to('/vehicles')
           else
             @errors = "Please check you username and/or password."

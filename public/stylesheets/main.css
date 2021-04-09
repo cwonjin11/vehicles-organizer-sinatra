@@ -115,31 +115,26 @@
   }
 
   input[type=text]:focus  {
-    width: 50%;
-    height: 20px; 
+    height: 25px; 
     border: 3px solid #555;
   }
   input[type=integer]:focus  {
-    width: 50%;
-    height: 20px; 
+    height: 25px; 
     border: 3px solid #555;
   }
 
   input[type=decimal]:focus  {
-    width: 50%;
-    height: 20px; 
+    height: 25px; 
     border: 3px solid #555;
   }
 
   input[type=password]:focus  {
-    width: 50%;
-    height: 20px; 
+    height: 25px; 
     border: 3px solid #555;
   }
 
   input[type=email]:focus  {
-    width: 50%;
-    height: 20px; 
+    height: 25px; 
     border: 3px solid #555;
   }
 

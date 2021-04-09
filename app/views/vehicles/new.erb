@@ -6,37 +6,38 @@
 <% end %>
 
 <ul>
+  
     <form action="/vehicles" method="POST">
     <li>
         <label for="brand">Make: </label><br>
-        <input type="text" id="brand" name="brand" ><br>
+        <input type="text" id="brand" name="brand" value="<%=@vehicle.brand%>"> <br>
     </li>
     <li>
         <label for="model">Model: </label><br>
-        <input type="text" id="model" name="model" ><br>
+        <input type="text" id="model" name="model" value="<%=@vehicle.model%>"> <br>
     </li>
     <li>
         <label for="year">Year: </label><br>
-        <input type="integer" id="year" name="year" ><br>
+        <input type="integer" id="year" name="year" value="<%=@vehicle.year%>" ><br>
     </li>
     <li>
-        <label for="style">Style: </label><br>
-        <input type="text" id="style" name="style" ><br>
+        <label for="style">Type(Body Style): </label><br>
+        <input type="text" id="style" name="style" value="<%=@vehicle.style%>" ><br>
     </li>
     <li>
         <label for="color">Color: </label><br>
-        <input type="text" id="color" name="color" ><br>
+        <input type="text" id="color" name="color" value="<%=@vehicle.color%>" ><br>
     </li>
     <li>
-        <label for="price">Price: </label><br>
-        <input type="number" id="price" name="price" min="0" step="0.01" ><br>
+        <label for="price">Price($): </label><br>
+        <input type="number" id="price" name="price" min="0" step="0.01" value="<%=@vehicle.price%>"><br>
     </li>
     <li>
         <label for="vin_number">VIN #: </label><br>
-        <input type="text" id="vin_number" name="vin_number" pattern="[A-Za-z0-9]+" maxlength="17" ><br>
+        <input type="text" id="vin_number" name="vin_number" pattern="[A-Za-z0-9]+" maxlength="17" value="<%=@vehicle.vin_number%>"><br>
     </li>
 
-</ul>  
+</ul>
 
   <input type="submit" value="Create a Vehicle">
   
