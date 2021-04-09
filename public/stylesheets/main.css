@@ -1,6 +1,6 @@
 @media screen {
   /* --- Reset Styles --- */
-  {
+  **{
     list-style: none;
     margin: 0;
     padding: 0;
@@ -162,7 +162,7 @@
     display: inline-block;
     font-size: 16px;
   }
-
+}
 @media screen and (max-width: 600px) {
   .wrapper {
     -moz-box-shadow: none;

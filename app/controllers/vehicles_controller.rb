@@ -31,6 +31,7 @@ class VehiclesController < ApplicationController
           erb :'/vehicles/new'
         else
           redirect to("/vehicles/#{@vehicle.id}") #you may delete @ sign "#{@vehicle.id}"
+          #in this case we need @ at line 33. why?
           #if you want to pass the instace to erb, we need instance variable. other than that, @ is not necessarily needed.
         end
       else

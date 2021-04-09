@@ -6,7 +6,7 @@ chuck_leuschke
 <% if @errors %>
   <p style="color: red;"><%= @errors %></p>
 <% end %>
-
+<ul>
 <form action="/login" method="POST">
   <label for="username">Username:</label><br>
   <input type="text" name="username" id="username"/><br>
@@ -16,3 +16,4 @@ chuck_leuschke
 
   <input type="submit" value="Log In"/>
 </form>
+</ul>
