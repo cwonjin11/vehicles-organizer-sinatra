@@ -10,9 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    # binding.pry
     if logged_in?
       redirect to('/vehicles')
     else
+
       erb :welcome
     end
   end
@@ -21,6 +23,7 @@ class ApplicationController < Sinatra::Base
   helpers do
     def current_user
       @current_user = User.find(session[:user_id])
+      # binding.pry
       #This method should use the user_id from the session hash to find the user in the database and return that user
     end
 

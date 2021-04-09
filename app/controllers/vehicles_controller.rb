@@ -4,6 +4,7 @@ class VehiclesController < ApplicationController
         # binding.pry
         if logged_in?
             @vehicles = current_user.vehicles
+            # binding.pry
             erb :'vehicles/index'
         else
             redirect to('/login')
@@ -71,7 +72,7 @@ class VehiclesController < ApplicationController
       @vehicle.price = params[:price]
       @vehicle.vin_number = params[:vin_number]
       #@vehicle.update(params)
-      
+
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/edit'

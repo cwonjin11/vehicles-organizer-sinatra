@@ -26,7 +26,6 @@ class UsersController < ApplicationController
        
         if !session[:user_id]
             erb :'users/login'
-            # binding.pry
         else
             redirect to('/vehicles')
             
@@ -35,14 +34,11 @@ class UsersController < ApplicationController
       
       
     post '/login' do
-        # binding.pry
         @user = User.find_by(username: params[:username])
-        # binding.pry
-
           if @user && @user.authenticate(params[:password])
             
             session[:user_id] = @user.id
-            
+            binding.pry
             redirect to('/vehicles')
           else
             @errors = "Please check you username and/or password."
