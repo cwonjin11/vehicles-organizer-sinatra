@@ -1,5 +1,6 @@
 require './config/environment'
 require 'active_support/core_ext/numeric/conversions' #Enables the formatting of numbers in a variety of ways.
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -7,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secure_ur_cars"
+    use Rack::Flash
   end
 
   get "/" do

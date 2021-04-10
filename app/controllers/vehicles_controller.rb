@@ -7,6 +7,7 @@ class VehiclesController < ApplicationController
             # binding.pry
             erb :'vehicles/index'
         else
+            flash[:message] = "Please log in to continue."
             redirect to('/login')
         end
 
@@ -49,16 +50,30 @@ class VehiclesController < ApplicationController
     end
     
 
+    # get '/vehicles/:id/edit' do
+    #   @vehicle = Vehicle.find(params[:id])
+    #     if logged_in? && @vehicle.user == current_user
+    #       @vehicle = Vehicle.find(params[:id])
+    #       @user = User.find(session[:user_id])
+    #       erb :'vehicles/edit'
+    #     else
+    #       redirect to('/login')
+    #     end
+    # end
+
     get '/vehicles/:id/edit' do
-      @vehicle = Vehicle.find(params[:id])
-        if logged_in? && @vehicle.user == current_user
-          @vehicle = Vehicle.find(params[:id])
-          @user = User.find(session[:user_id])
+      if logged_in?
+      @vehicle = Vehicle.find_by_id(params[:id])
+        if  @vehicle.user == current_user
+          # binding.pry
+          # @vehicle = Vehicle.find(params[:id])
           erb :'vehicles/edit'
         else
-          redirect to('/login')
+          redirect to('/vehicles')
         end
-        # binding.pry
+      else 
+        redirect to('/login')
+      end
     end
   
   
@@ -72,7 +87,7 @@ class VehiclesController < ApplicationController
       @vehicle.color = params[:color]
       @vehicle.price = params[:price]
       @vehicle.vin_number = params[:vin_number]
-      #@vehicle.update(params)
+      # @vehicle.update(params[:user])
 
         if !@vehicle.save
           @errors = @vehicle.errors.full_messages
