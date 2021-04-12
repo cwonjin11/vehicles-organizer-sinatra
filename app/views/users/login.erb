@@ -8,11 +8,11 @@
 <h1>&#128665; Log In! &#128665; </h1>
 ["romeo", "ann", "teodoro.greenholt", "marilee_heaney", "davis", "carlota", "stacy", "ruben", "glendora", "chuck_leuschke"]
 <% if @errors %>
-  <p style="color: red;"><%= @errors %></p>
+  <p style="color: orangered;"><%= @errors %></p>
 <% end %>
 
 <ul>
-<form action="/login" method="POST">
+<form action="/login" method="POST"> 
   <label for="username">Username:</label><br>
   <input type="text" name="username" id="username" placeholder="Username"/><br>
 
