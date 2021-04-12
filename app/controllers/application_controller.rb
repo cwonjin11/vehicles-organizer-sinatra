@@ -22,16 +22,17 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  helpers do
-    def current_user
-      @current_user = User.find(session[:user_id])
-      # binding.pry
-      #This method should use the user_id from the session hash to find the user in the database and return that user
-    end
-
-    def logged_in?
+  helpers do #helper block tells sinatra that theses method should be avialable anywhere
+    def logged_in? # "?" returns true or false 
       !!session[:user_id]
       #This method should return true if the user_id is in the session hash and false if not.
+    end
+
+    def current_user
+      @current_user = User.find(session[:user_id]) 
+      # same as @current_user ||= User.find_by(id: session[user_id])
+      # binding.pry
+      #This method should use the user_id from the session hash to find the user in the database and return that user
     end
   end
 
