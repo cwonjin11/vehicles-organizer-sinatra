@@ -24,9 +24,10 @@ class VehiclesController < ApplicationController
 
     post '/vehicles' do
       if logged_in?
-        @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
-          style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
-        
+        # binding.pry
+        # @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
+        #   style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
+          @vehicle = current_user.vehicles.build(params)
         if !@vehicle.save #you dont want to save always. Validation needed.
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
@@ -63,14 +64,14 @@ class VehiclesController < ApplicationController
 
     get '/vehicles/:id/edit' do
       if logged_in?
-      @vehicle = Vehicle.find_by_id(params[:id])
-        if  @vehicle.user == current_user
-          # binding.pry
-          # @vehicle = Vehicle.find(params[:id])
-          erb :'vehicles/edit'
-        else
-          redirect to('/vehicles')
-        end
+          @vehicle = Vehicle.find_by_id(params[:id])
+            if @vehicle.user == current_user #or current_user.id
+               # binding.pry
+               # @vehicle = Vehicle.find(params[:id])
+              erb :'vehicles/edit'
+            else
+            redirect to('/vehicles')
+          end
       else 
         redirect to('/login')
       end
@@ -79,17 +80,18 @@ class VehiclesController < ApplicationController
   
     patch '/vehicles/:id' do
       @vehicle = Vehicle.find(params[:id])
-     
-      @vehicle.brand = params[:brand]
-      @vehicle.model = params[:model]
-      @vehicle.year = params[:year]
-      @vehicle.style = params[:style]
-      @vehicle.color = params[:color]
-      @vehicle.price = params[:price]
-      @vehicle.vin_number = params[:vin_number]
-      # @vehicle.update(params[:user])
+      params.delete("_method")
+      @vehicle.update(params)
+    #  binding.pry
+      # @vehicle.brand = params[:brand]
+      # @vehicle.model = params[:model]
+      # @vehicle.year = params[:year]
+      # @vehicle.style = params[:style]
+      # @vehicle.color = params[:color]
+      # @vehicle.price = params[:price]
+      # @vehicle.vin_number = params[:vin_number]
 
-        if !@vehicle.save
+        if !@vehicle.update(params)
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/edit'
         else
