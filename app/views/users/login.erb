@@ -1,19 +1,22 @@
-
+  <% if flash.has?(:notice) %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %> <br>
 
 <h1>&#128665; Log In! &#128665; </h1>
 ["romeo", "ann", "teodoro.greenholt", "marilee_heaney", "davis", "carlota", "stacy", "ruben", "glendora", "chuck_leuschke"]
-<% if @errors %>
-  <p style="color: orangered;"><%= @errors %></p>
-<% end %>
+
+  <% if @errors %>
+    <p style="color: crimson;"><%= @errors %></p>
+  <% end %>
+
 
 <ul>
-<form action="/login" method="POST"> 
-  <label for="username">Username:</label><br>
-  <input type="text" name="username" id="username" placeholder="Username"/><br>
+  <form action="/login" method="POST"> 
+    <label for="username">Username:</label><br>
+    <input type="text" name="username" id="username" placeholder="Username"/><br>
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" id="password" placeholder="Password"/><br><br />
 
-  <label for="password">Password:</label><br>
-  <input type="password" name="password" id="password" placeholder="Password"/><br><br />
-
-  <input type="submit" value="Log In"/>
-</form>
+    <input type="submit" value="Log In"/>
+  </form>
 </ul>
