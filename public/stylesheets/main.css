@@ -162,11 +162,11 @@
     display: inline-block;
     font-size: 16px;
   }
-  /* .message {
-    background-color: #f89406;
-    border-color: #e96506;
-    color: #ffffff;
-  } */
+  .notice {
+    /* background-color: #f89406; */
+    /* border-color: #e96506; */
+    color: #ff0000;
+  }
 
 
 }
