@@ -2,9 +2,7 @@
 <h1>&#128665; <%= @vehicle.brand %> <%= @vehicle.model %> <%= @vehicle.year %> &#128665;</h1>
 
 <% if @errors %>
-  <% @errors.each do |error| %>
-    <p style="color: red;"><%= error %></p>
-  <% end %>
+    <p style="color: red;"><%= @errors %></p>
 <% end %>
 
 
