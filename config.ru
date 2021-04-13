@@ -6,10 +6,11 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
   end
 
 
-use Rack::MethodOverride #html can do get and post. tell active record want to more than get and post. edit/update
+use Rack::MethodOverride #html can only do get and post. tell active record want to more than get and post. edit/update
 run ApplicationController
 use UsersController
 use VehiclesController
+
 
 
 
