@@ -1,14 +1,20 @@
 
 <h1> &#128665; Hello, <%= current_user.username %> !! &#128665; </h1>
 
-  <a href="/vehicles/new" class="button1"> 	&#128664;Add a new vehicle&#128664; </a>
-<ol>
-  <h3>You can ADD, EDIT or DELETE your vehicles. </h3>
-  <h3>You have total 	&#128663;<%= current_user.vehicles.size %> cars!</h3>
+<% if flash.has?(:notice) %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %> <br>
 
-    <% @vehicles.order(id: :ASC, brand: :asc, model: :asc, year: :desc).each do |vehicle|%>
-    <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></b></li>
-    <% end %>
-</ol>
+  <a href="/vehicles/new" class="button1"> 	&#128664;Add a new vehicle&#128664; </a>
+
+
+  <ol>
+    <h3>You can ADD, EDIT or DELETE your vehicles. </h3>
+    <h3>You have total 	&#128663;<%= current_user.vehicles.size %> cars!</h3>
+
+      <% @vehicles.order(id: :ASC, brand: :asc, model: :asc, year: :desc).each do |vehicle|%>
+      <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></b></li>
+      <% end %>
+  </ol>
 
 
