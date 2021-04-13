@@ -44,12 +44,10 @@ class UsersController < ApplicationController
             #put the user in the session
             session[:user_id] = user.id #we added user_id key value in session hash
             #this is when user actually log in to !!
-
             #redirect them somwhere
             redirect to('/vehicles')
           else
             #if they dont, redirect them to somewhere
-            # binding.pry
             @errors = "Please check your username and/or password."
             erb :'users/login'
           end
@@ -59,7 +57,9 @@ class UsersController < ApplicationController
     get '/logout' do
           if logged_in?
               session.clear #grap our session out and clear it!
+              flash[:notice] = "You are logged out!"
               redirect to('/')
+             
           else
               redirect to('/')
           end
