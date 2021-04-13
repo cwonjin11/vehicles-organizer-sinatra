@@ -34,3 +34,11 @@ css
     line-height: 36px;
     margin-bottom: 16px;
   }
+
+
+error in html
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p style="color: crimson;"><%= error %></p>
+  <% end %>
+<% end %>
