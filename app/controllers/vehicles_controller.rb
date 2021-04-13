@@ -3,9 +3,7 @@ class VehiclesController < ApplicationController
     get '/vehicles' do
         
         if logged_in?
-          # binding.pry
             @vehicles = current_user.vehicles
-            # binding.pry
             erb :'vehicles/index'
         else
             flash[:message] = "Please log in to continue."
@@ -41,43 +39,32 @@ class VehiclesController < ApplicationController
         redirect to('/login')
       end
     end  
-
-
-
+  
     get '/vehicles/:id' do
-      @vehicle = Vehicle.find(params[:id])
-        if logged_in? && @vehicle.user == current_user 
-          erb :'vehicles/show'
+       if logged_in? 
+          @vehicle = Vehicle.find_by_id(params[:id])
+            if @vehicle == nil
+              redirect to('/login')  
+            elsif @vehicle.user == current_user 
+              erb :'vehicles/show'
+            else
+              redirect to('/login')
+            end
         else
-          if params[:id] == nil
-            binding.pry
-          end
           redirect to('/login')
-        end 
+      end 
     end
-    
-
-    # get '/vehicles/:id/edit' do
-    #   @vehicle = Vehicle.find(params[:id])
-    #     if logged_in? && @vehicle.user == current_user
-    #       @vehicle = Vehicle.find(params[:id])
-    #       @user = User.find(session[:user_id])
-    #       erb :'vehicles/edit'
-    #     else
-    #       redirect to('/login')
-    #     end
-    # end
 
     get '/vehicles/:id/edit' do
       if logged_in?
-          @vehicle = Vehicle.find_by_id(params[:id])
-            if @vehicle.user == current_user #or current_user.id
-               # binding.pry
-               # @vehicle = Vehicle.find(params[:id])
-              erb :'vehicles/edit'
-            else
+        @vehicle = Vehicle.find_by_id(params[:id])
+          if @vehicle == nil
+             redirect to('/login') 
+          elsif @vehicle.user == current_user
+                erb :'vehicles/edit'
+          else
               redirect to('/vehicles')
-            end
+          end
       else 
           redirect to('/login')
       end
@@ -85,10 +72,10 @@ class VehiclesController < ApplicationController
   
   
     patch '/vehicles/:id' do
-      @vehicle = Vehicle.find(params[:id])
+      @vehicle = Vehicle.find_by_id(params[:id])
       params.delete("_method")
       @vehicle.update(params)
-    #  binding.pry
+
       # @vehicle.brand = params[:brand]
       # @vehicle.model = params[:model]
       # @vehicle.year = params[:year]
@@ -96,14 +83,14 @@ class VehiclesController < ApplicationController
       # @vehicle.color = params[:color]
       # @vehicle.price = params[:price]
       # @vehicle.vin_number = params[:vin_number]
-
         if !@vehicle.update(params)
-          @errors = @vehicle.errors.full_messages
+          @errors = @vehicle.errors.full_messages.to_sentence
           erb :'/vehicles/edit'
         else
           flash[:notice] = "Your vehicle has been successfully updated"
           redirect to("/vehicles/#{@vehicle.id}")
         end
+      
     end  
 
 
