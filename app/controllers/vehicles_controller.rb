@@ -1,8 +1,9 @@
 class VehiclesController < ApplicationController
 
     get '/vehicles' do
-        # binding.pry
+        
         if logged_in?
+          # binding.pry
             @vehicles = current_user.vehicles
             # binding.pry
             erb :'vehicles/index'
@@ -41,11 +42,16 @@ class VehiclesController < ApplicationController
       end
     end  
 
+
+
     get '/vehicles/:id' do
       @vehicle = Vehicle.find(params[:id])
-        if logged_in? && @vehicle.user == current_user
+        if logged_in? && @vehicle.user == current_user 
           erb :'vehicles/show'
         else
+          if params[:id] == nil
+            binding.pry
+          end
           redirect to('/login')
         end 
     end
@@ -70,10 +76,10 @@ class VehiclesController < ApplicationController
                # @vehicle = Vehicle.find(params[:id])
               erb :'vehicles/edit'
             else
-            redirect to('/vehicles')
-          end
+              redirect to('/vehicles')
+            end
       else 
-        redirect to('/login')
+          redirect to('/login')
       end
     end
   
@@ -95,6 +101,7 @@ class VehiclesController < ApplicationController
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/edit'
         else
+          flash[:notice] = "Your vehicle has been successfully updated"
           redirect to("/vehicles/#{@vehicle.id}")
         end
     end  
