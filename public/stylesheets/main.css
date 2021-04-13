@@ -164,7 +164,9 @@
   }
   .notice {
     /* background-color: #f89406; */
-    /* border-color: #e96506; */
+    /* border-style: solid;
+    border-width: thin;
+    border-color: #ff0404; */
     color: #ff0000;
   }
 
