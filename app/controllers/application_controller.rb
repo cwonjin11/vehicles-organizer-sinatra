@@ -8,15 +8,13 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "secure_ur_cars"
-    use Rack::Flash
+    use Rack::Flash #to use flash message for undefined objects
   end
 
   get "/" do
-    # binding.pry
     if logged_in?
       redirect to('/vehicles')
     else
-
       erb :welcome
     end
   end
@@ -31,7 +29,6 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user = User.find(session[:user_id]) 
       # same as @current_user ||= User.find_by(id: session[user_id])
-      # binding.pry
       #This method should use the user_id from the session hash to find the user in the database and return that user
     end
   end

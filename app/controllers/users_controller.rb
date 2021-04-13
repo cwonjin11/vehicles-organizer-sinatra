@@ -13,13 +13,13 @@ class UsersController < ApplicationController
         @user = User.new(username: params["username"], email: params["email"], password: params["password"])
         #save the user
         if !@user.save #if the user is not saved
-            @errors = @user.errors.full_messages #show error messages by using instance variable
-            #redirect to the signup again
+            @errors = @user.errors.full_messages.to_sentence #show error messages by using instance variable
+            # and redirect to the signup again
             erb :'users/create_user'
-        else #if the user saved
-            #set the session id
+        else #if the user saved, that means user has all valid attributes
+            #set the session id as user id
             session[:user_id] = @user.id
-            #redirect the user
+            # and redirect the user
             redirect to('/vehicles')
         end
     end

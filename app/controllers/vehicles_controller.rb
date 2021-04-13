@@ -6,7 +6,7 @@ class VehiclesController < ApplicationController
             @vehicles = current_user.vehicles
             erb :'vehicles/index'
         else
-            flash[:message] = "Please log in to continue."
+            flash[:notice] = "Please log in to continue."
             redirect to('/login')
         end
 
@@ -31,6 +31,7 @@ class VehiclesController < ApplicationController
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
         else
+          flash[:notice] = "Vehicle successfully created!"
           redirect to("/vehicles/#{@vehicle.id}") #you may delete @ sign "#{@vehicle.id}"
           #in this case we need @ at line 33. why?
           #if you want to pass the instace to erb, we need instance variable. other than that, @ is not necessarily needed.
@@ -87,7 +88,7 @@ class VehiclesController < ApplicationController
           @errors = @vehicle.errors.full_messages.to_sentence
           erb :'/vehicles/edit'
         else
-          flash[:notice] = "Your vehicle has been successfully updated"
+          flash[:notice] = "Your vehicle has been successfully updated!"
           redirect to("/vehicles/#{@vehicle.id}")
         end
       
@@ -98,6 +99,7 @@ class VehiclesController < ApplicationController
       @vehicle = Vehicle.find(params[:id])
         if logged_in? && @vehicle.user == current_user
           @vehicle.destroy
+          flash[:notice] = "You have successfully deleted #{@vehicle.brand}, #{@vehicle.model}, #{@vehicle.year}!"
           redirect to('/vehicles')
         else
           redirect to('/login')
