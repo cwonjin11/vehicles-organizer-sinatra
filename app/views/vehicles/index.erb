@@ -5,13 +5,13 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %> <br>
 
-  <a href="/vehicles/new" class="button1"> 	&#128664;Add a new vehicle&#128664; </a>
+  <!--<a href="/vehicles/new" class="button1"> 	&#128664;Add a new vehicle&#128664; </a><br>-->
+  <a href="/vehicles/new"> <button class="button button2"> &#10133; Add a new vehicle &#128664; </button> </a>
 
 
   <ol>
-    <h3>You can ADD, EDIT or DELETE your vehicles. </h3>
-    <h3>You have total 	&#128663;<%= current_user.vehicles.size %> cars!</h3>
-
+    <h2>You have total <span class="red">	&#128663; <%= current_user.vehicles.size %></span> cars!</h2>
+    <!--<h3>You can ADD, EDIT or DELETE your vehicles. </h3>-->
       <% @vehicles.order(id: :ASC, brand: :asc, model: :asc, year: :desc).each do |vehicle|%>
       <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></b></li>
       <% end %>
