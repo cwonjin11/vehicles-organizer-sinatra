@@ -6,13 +6,14 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :sessions
+    enable :sessions 
     set :session_secret, "secure_ur_cars"
     use Rack::Flash #to use flash message for undefined objects
   end
 
   get "/" do
     if logged_in?
+      
       redirect to('/vehicles')
     else
       erb :welcome

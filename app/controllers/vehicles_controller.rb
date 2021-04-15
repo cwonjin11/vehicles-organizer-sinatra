@@ -6,7 +6,7 @@ class VehiclesController < ApplicationController
             @vehicles = current_user.vehicles
             erb :'vehicles/index'
         else
-            flash[:notice] = "Please log in to continue."
+            flash[:notice] = "Please log in or sign up to continue."
             redirect to('/login')
         end
 
@@ -17,6 +17,7 @@ class VehiclesController < ApplicationController
         @vehicle = Vehicle.new(params)
         erb :'vehicles/new'
       else
+        flash[:notice] = "Please log in or sign up to continue."
         redirect to('/login')
       end
     end
@@ -37,21 +38,25 @@ class VehiclesController < ApplicationController
           #if you want to pass the instace to erb, we need instance variable. other than that, @ is not necessarily needed.
         end
       else
+        flash[:notice] = "Please log in or sign up to continue."
         redirect to('/login')
       end
     end  
   
-    get '/vehicles/:id' do
+    get '/vehicles/:id' do 
        if logged_in? 
           @vehicle = Vehicle.find_by_id(params[:id])
             if @vehicle == nil
+              flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
               redirect to('/login')  
             elsif @vehicle.user == current_user 
               erb :'vehicles/show'
             else
+              flash[:notice] = "Oops,, something went wrong! You can only see your vehicles."
               redirect to('/login')
             end
         else
+          flash[:notice] = "Please log in or sign up to continue."
           redirect to('/login')
       end 
     end
@@ -60,21 +65,24 @@ class VehiclesController < ApplicationController
       if logged_in?
         @vehicle = Vehicle.find_by_id(params[:id])
           if @vehicle == nil
+             flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
              redirect to('/login') 
           elsif @vehicle.user == current_user
                 erb :'vehicles/edit'
           else
+              flash[:notice] = "Oops,, something went wrong! You can only edit your vehicles."
               redirect to('/vehicles')
           end
       else 
-          redirect to('/login')
+        flash[:notice] = "Please log in or sign up to continue."
+        redirect to('/login')
       end
     end
   
   
     patch '/vehicles/:id' do
       @vehicle = Vehicle.find_by_id(params[:id])
-      params.delete("_method")
+      params.delete("_method") ##?????
       @vehicle.update(params)
 
       # @vehicle.brand = params[:brand]
@@ -102,6 +110,7 @@ class VehiclesController < ApplicationController
           flash[:notice] = "You have successfully deleted #{@vehicle.brand}, #{@vehicle.model}, #{@vehicle.year}!"
           redirect to('/vehicles')
         else
+          flash[:notice] = "Please log in or sign up to continue."
           redirect to('/login')
         end
     end
