@@ -9,7 +9,7 @@ This app could be used for:
 * people working for the vehicle sales field.
 
 
-To watch the demo video of this application, visit [(https://drive.google.com/file/d/1ADVO6x0NNghA9boOKc7OIhKTbQxwvL4e/view?usp=sharing)].
+To watch the demo video of this application, visit [()].
 
 ## Install Instructions
 
@@ -24,9 +24,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/cwonji
 ## License
 
 The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-
-
-
-Clone this repository, run `bundle install`, `rake db:migrate`, and then run `shotgun`. Open a new tab in your browser of (http://localhost:9393).
 
