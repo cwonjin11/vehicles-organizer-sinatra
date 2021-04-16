@@ -1,15 +1,15 @@
 # Vehicle Organizer
 
 A simple Sinatra-powered web application created to track user's vehicles.
-User can add and edit/delete a vehicle with make, model, year, type, color, vin#, price.
+User can add and edit/delete a vehicle with make, model, year, type, color, vin# and price.
 
 This app could be used for:
 
-* person who has muliple cars that need to be listed.
+* a person who has muliple cars that need to be listed.
 * people working for the vehicle sales field.
 
 
-To watch the demo video of this application, visit [()].
+To watch the demo video of this application, visit [(https://drive.google.com/file/d/1LP8sa1N1waOHuNjtfv_SAXtvKReinEiO/view)].
 
 ## Install Instructions
 
