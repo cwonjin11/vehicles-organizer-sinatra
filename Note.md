@@ -42,3 +42,31 @@ error in html
     <p style="color: crimson;"><%= error %></p>
   <% end %>
 <% end %>
+
+
+
+
+
+  a.button {
+    background-color: rgb(173, 198, 230);
+    ; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  a.button1 {
+    border-radius: 8px;
+    background-color: rgb(173, 198, 230);
+    border: none;
+    color: rgb(6, 15, 134);
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
