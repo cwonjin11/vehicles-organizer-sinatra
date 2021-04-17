@@ -17,10 +17,12 @@
   </b></ul>
 <h2></h2>
 
+
 <a href="/vehicles/<%= @vehicle.id%>/edit"> <button class="button button2">⚒️ Edit Vehicle </button> </a> 
 <br><br>
 <form action="/vehicles/<%= @vehicle.id %>/delete" method="POST">
   <input type="hidden" id="hidden" name="_method" value="DELETE"/>
-  <button class="button button2"> 🗑️ Delete Vehicle </button>
+  <button class="button2 button2"> 🗑️ Delete Vehicle </button>
 </form>
+
 

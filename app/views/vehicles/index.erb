@@ -3,13 +3,10 @@
 
 <% if flash.has?(:notice) %>
   <div class="notice"><%= flash[:notice] %></div>
-<% end %> <br>
-
-  <a href="/vehicles/new"> <button class="button button2"> &#10133; Add a new vehicle &#128664; </button> </a>
-
-
-  <ol>
-    <h2>You have total <span class="red">	&#128663; <%= current_user.vehicles.size %></span> cars!</h2>
+<% end %> 
+  <h2>You have total <span class="red">	&#128663; <%= current_user.vehicles.size %></span> cars!!</h2>
+  <a href="/vehicles/new"> <button class="button2 button2"> &#10133; Add a new vehicle &#128664; </button> </a>
+  <ol class="column-list">  
       <% @vehicles.order(id: :ASC, brand: :asc, model: :asc, year: :desc).each do |vehicle|%>
       <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></b></li>
       <% end %>
