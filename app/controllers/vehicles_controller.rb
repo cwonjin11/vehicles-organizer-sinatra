@@ -1,7 +1,6 @@
 class VehiclesController < ApplicationController
 
     get '/vehicles' do
-        
         if logged_in?
             @vehicles = current_user.vehicles
             erb :'vehicles/index'
@@ -44,20 +43,20 @@ class VehiclesController < ApplicationController
     end  
   
     get '/vehicles/:id' do 
-       if logged_in? 
-          @vehicle = Vehicle.find_by_id(params[:id])
-            if @vehicle == nil
-              flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
-              redirect to('/login')  
-            elsif @vehicle.user == current_user 
-              erb :'vehicles/show'
-            else
-              flash[:notice] = "Oops,, something went wrong! You can only see your vehicles."
-              redirect to('/login')
-            end
-        else
-          flash[:notice] = "Please log in or sign up to continue."
-          redirect to('/login')
+      if logged_in? 
+        @vehicle = Vehicle.find_by_id(params[:id])
+          if @vehicle == nil
+            flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
+            redirect to('/login')  
+          elsif @vehicle.user == current_user 
+            erb :'vehicles/show'
+          else
+            flash[:notice] = "Oops,, something went wrong! You can only see your vehicles."
+            redirect to('/login')
+          end
+      else
+        flash[:notice] = "Please log in or sign up to continue."
+        redirect to('/login')
       end 
     end
 
@@ -65,13 +64,13 @@ class VehiclesController < ApplicationController
       if logged_in?
         @vehicle = Vehicle.find_by_id(params[:id])
           if @vehicle == nil
-             flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
-             redirect to('/login') 
+            flash[:notice] = "Oops,, something went wrong! Please use valid inputs"
+            redirect to('/login') 
           elsif @vehicle.user == current_user
-                erb :'vehicles/edit'
+            erb :'vehicles/edit'
           else
-              flash[:notice] = "Oops,, something went wrong! You can only edit your vehicles."
-              redirect to('/vehicles')
+            flash[:notice] = "Oops,, something went wrong! You can only edit your vehicles."
+            redirect to('/vehicles')
           end
       else 
         flash[:notice] = "Please log in or sign up to continue."
@@ -82,7 +81,10 @@ class VehiclesController < ApplicationController
   
     patch '/vehicles/:id' do
       @vehicle = Vehicle.find_by_id(params[:id])
-      params.delete("_method") ##?????
+      params.delete("_method")
+      # http form only allows get and post actions. 
+      #By deleting _method form params hash, (it will actually delete "_method"=>"patch" 
+      #and make it as post action but still patching it because we are user rack::methodoverride.)
       @vehicle.update(params)
 
       # @vehicle.brand = params[:brand]
@@ -107,7 +109,7 @@ class VehiclesController < ApplicationController
       @vehicle = Vehicle.find(params[:id])
         if logged_in? && @vehicle.user == current_user
           @vehicle.destroy
-          flash[:notice] = "You have successfully deleted #{@vehicle.brand}, #{@vehicle.model}, #{@vehicle.year}!"
+          flash[:notice] = "You have successfully deleted your vehicle [#{@vehicle.brand}, #{@vehicle.model}, #{@vehicle.year}]!"
           redirect to('/vehicles')
         else
           flash[:notice] = "Please log in or sign up to continue."

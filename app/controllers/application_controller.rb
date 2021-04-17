@@ -13,7 +13,6 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      
       redirect to('/vehicles')
     else
       erb :welcome
@@ -21,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  helpers do #helper block tells sinatra that theses method should be avialable anywhere
+  helpers do #helper block tells sinatra that theses method should be available anywhere
     def logged_in? # "?" returns true or false 
       !!session[:user_id]
       #This method should return true if the user_id is in the session hash and false if not.

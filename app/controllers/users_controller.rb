@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     
     get '/login' do
         if !session[:user_id]
-            erb :'users/login'
+            erb :'users/login'      
         else
             redirect to('/vehicles')
             
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     # Tip: Here is where we authenticate the user and leverage the session hash to log them in!
     post '/login' do  
         #find the user by username
-        user = User.find_by(username: params[:username])
+        user = User.find_by(username: params[:username]) #=> to find user id which is the most uniqueness
         #check to see if the user exists && the the password matches
           if user && user.authenticate(params[:password]) #we are calling .authenticate method from bcrypt gem!!!
              #.authenticate will actually decrypt the password.
@@ -48,10 +48,10 @@ class UsersController < ApplicationController
             #put the user in the session ==> we are actually going to log our user in, which means we are going to append that user id to the session hash
             session[:user_id] = user.id #we added user_id key value in session hash. session[:user_id] means add user_id in to the session hash
             #this is when user actually log in to !!
-           
-            redirect to('/vehicles') #redirect them somwhere
+            redirect to('/vehicles')
+            #redirect them somwhere
           else
-            #if they dont, redirect them to somewhere
+            #if they dont, then we need to  redirect them to somewhere else
             @errors = "Please check your username and password."
             erb :'users/login'
           end
@@ -63,7 +63,6 @@ class UsersController < ApplicationController
               session.clear #grap our session out and clear it!
               flash[:notice] = "You are logged out!"
               redirect to('/')
-             
           else
               redirect to('/')
           end
