@@ -137,6 +137,8 @@ Cookies are text files stored on the client computer and they are kept of use tr
 - delete : Deletes a specific resource
 
 ## How "Dynamic URL Routes" work.
+dynamic routes : routes that are created based on attributes within the url of the request
+=>It's important to note that in Sinatra a route is simply an HTTP method/verb that is paired with a URL-matching pattern. When your Sinatra application receives a request, it will match that route to a specific controller action that matches that URL pattern.
 
 => Dynamic webapps are sites where the content changes based on user input (e.g. Facebook, Twitter, Yelp, etc.). Every time you visit the site, the content is most likely different because someone else gave a review of that restaurant, or sent out a new tweet, or commented on that image you liked.
 Practice solidifying your understanding of the Request/Response Flow by drawing your own diagrams of this flow
