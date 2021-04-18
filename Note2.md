@@ -20,7 +20,7 @@ At the end of this unit you should be able to explain the MVC flow in your own w
    1. Logic, this is the one we have to have.
    2. interfaces in between active record and our database.
    3. allow us to get to our objects. inherit from ActiveRecord::Base, in charge of our objects
-2. Contoroller => Intermediary for the Model and View)
+2. Contoroller => Intermediary for the Model and View
    1. it works in between the model and the views.
    2. accept web request from the view, sends them to the model,
    3. passes data to the view, hold all of our CRUD function.
@@ -32,7 +32,7 @@ At the end of this unit you should be able to explain the MVC flow in your own w
 ## rendering vs redirect
 
 - Rendering
-  allows us to pass instance variable through to the era files
+  allows us to pass instance variable through to the erb files
   displays the view without submitting an additional request to the server
 - Redirecting
   Sends a new request to the server
@@ -55,7 +55,7 @@ At the end of this unit you should be able to explain the MVC flow in your own w
 
 - State / stateful : remembered information
   => a system is described as stateful if it is designed to remember preceding events or user interactions; the remembered information is called the state of the system.
-
+  => Each web request you send is, from the point of view of the application that is receiving that request, totally independent
 ## password / authentication
 
 => when user inputs password, that is just a word. It could be anything, any word.
@@ -66,6 +66,22 @@ what .authenticate method do?
 => Does this plain text password acutally match up with the version we have in the back end?
 
 ### What is a session? How do I enable it in my application and why
+
+<Sessions and Data Persistance>
+The Hyper-Text Transfer Protocol (HTTP) is, by definition, a stateless protocol. What does "stateless" mean? HTTP is called a "stateless protocol" because a browser does not attach special meaning to a request, and consequently does not require the server to retain any information about a user or entity for the duration of a request.
+
+For example, when you log in to http://www.learn.co (Links to an external site.), you fill out a form with your Github username and password. Learn receives that information and, at that moment in time, knows who you are by matching up that log in information, submitted via a HTTP POST request, with data in its database. What about after you log in? After you log in and click a link for a particular lesson, you are sending another HTTP request to Learn. At this point in the process of your interaction with the Learn web application, Learn has no idea who you are! But wait, you might be thinking: "Didn't I just log in? How can Learn forget so easily?" That is what it means to be "stateless". Each web request you send is, from the point of view of the application that is receiving that request, totally independent.
+
+Then how, you might be wondering, does Learn (and every other web app) know who I am after I log in? Through the use of sessions.
+
+A session is a hash that lives in your application in the server. The session hash can be accessed in any controller file of your application. Whatever data is stored in the session hash can thus be accessed, added to, changed or deleted in any controller file or route at any time and that change persists for the duration of the session.
+
+When we say "duration of the session", we mean the period of time in which you, the client, are interacting with the web application. This is usually the time in between logging in and logging out.
+
+In fact, the act of "logging in", is simply the the act of having your user id stored inside the session hash. The act of "logging out" is simply the act of your user id being removed from the session hash.
+
+The session hash is most commonly used to store info like a user's id, which the web application will use to know who is the "current user" and show that user the appropriate information (for example, their profile page, their shopping cart, etc). However, we can put anything we want inside the session hash. //
+
 
 Session
 A session creates a file in a temporary directory on the server where registered session variables and their values are stored. This data will be available to all pages on the site during that visit.
@@ -84,19 +100,26 @@ Cookies are text files stored on the client computer and they are kept of use tr
   Confirmation of password (using a XXX_confirmation attribute)
 
 ## What does the .authenticate method do and how is it connected to the has_secure_password method
+1. user input plain text password
+2. bcrypt gem will make that password salted and hashed version
+3. active record's has_secure_password code will call .authenticate method
+4. .authenticate method will match up the ecnrypted password done by bcrypt gem with encrypted version of password saved in the database.
+5. if these two password matches, authenticate will return the User instance. If not, it returns false.
+
 
 - This ActiveRecord macro gives us access to a few new methods. A macro is a method that when called, creates methods for you. This is meta programming, which you don't need to worry about now. Just know that using a macro is just like calling a normal ruby method.
   In this case, the macro has_secure_password is being called just like a normal ruby method. It works in conjunction with a gem called bcrypt and gives us all of those abilities in a secure way that doesn't actually store the plain text password in the database.
 
 - it match up the plain text password from the user input with the version we have in the back-end.
-- .authenticate comes from bcrypt gem!!1
-- .authenticate decrypts the password
+- .authenticate comes from active record's has_secure_password code.
+- .authenticate matches the encrypted password between encrypted user input and encrypted password saved in the server.
 - => Does this plain text password acutally match up with the version we have in the back end?
 
 ## Why do we use the bcrypt gem and what is the significance of adding the password_digest column to the User model in the database?
 
 - bcrypt gem : It will store a salted, hashed version of our users' passwords in our database in a column called password_digest.
-
+- it makes to save the salted and hashed password in the databse column called password_digest. However, we still access the attribute of password given by has_secure_password method.
+- it also add "password" and  "password_confirmation" validations with 72 byes length limits automatically.
 - In order to work with bcrypt gem, we need to use password_digest in the table column
 
 ## Rack Unit: How the Internet Works, Request/Response Flow, Routes
