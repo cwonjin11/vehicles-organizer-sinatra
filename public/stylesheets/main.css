@@ -213,6 +213,27 @@
 .red { color: #FF0000; 
 }
 
+.footer-text {
+  /* display: inline-block; */
+  float: right;
+  margin: auto;
+}
+
+.footer-text p {
+  font-size: 14px;
+}
+
+.header img {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 99%;
+  height: auto;
+  opacity: 0.7;
+  border-radius: 30px;
+}
+
 
 
 

@@ -18,13 +18,16 @@
         <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2021 <strong>VehiclesOrganizer</strong></small>
+      <div class="footer-text">  
+        <p>&copy; 2021 <strong>VehiclesOrganizer</strong></p>
+      </div>
           <% if logged_in? %>
           <small><strong><a href="/logout"><button class="button1 button1"> ✖️ Log Out</button></a></strong></small> / 
           <small><strong><a href="/vehicles"> <button class="button1 button1"> 🚗 Vehicle list </button></a></strong></small>
           <% else %>
-          <small><strong><a href="/signup"><button class="button1 button1">🚗 Sign Up</button></a></strong></small> /
-          <small><strong><a href="/login"><button class="button1 button1">🚗 Log In</button></a></strong></small>
+          <!--<small><strong><a href="/signup"><button class="button1 button1">🚗 Sign Up</button></a></strong></small> /
+          <small><strong><a href="/login"><button class="button1 button1">🚗 Log In</button></a></strong></small> / -->
+          <small><strong><a href="/"><button class="button1 button1">🚗 Main Page</button></a></strong></small> 
           <% end %>
       </footer>
     </div>
