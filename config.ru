@@ -6,12 +6,9 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 
-use Rack::MethodOverride #html can only do get and post. tell active record want to more than get and post. edit/update
-    #  !!  PATCH-REQUESTS  !!
-    #  HTML Limitations
-    #  **  Do something other than GET + POST
+use Rack::MethodOverride 
 run ApplicationController
-use UsersController #why do wee need this? 
+use UsersController 
 use VehiclesController
 
 

@@ -23,18 +23,13 @@ class VehiclesController < ApplicationController
 
     post '/vehicles' do
       if logged_in?
-        # binding.pry
-        # @vehicle = Vehicle.new(brand: params["brand"], model: params["model"], year: params["year"],
-        #   style: params["style"], color: params["color"], price: params["price"], vin_number: params["vin_number"], user_id: current_user.id)
           @vehicle = current_user.vehicles.build(params)
-        if !@vehicle.save #you dont want to save always. Validation needed.
+        if !@vehicle.save 
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
         else
           flash[:notice] = "Vehicle successfully created!"
-          redirect to("/vehicles/#{@vehicle.id}") #you may delete @ sign "#{@vehicle.id}"
-          #in this case we need @ at line 33. why?
-          #if you want to pass the instace to erb, we need instance variable. other than that, @ is not necessarily needed.
+          redirect to("/vehicles/#{@vehicle.id}") 
         end
       else
         flash[:notice] = "Please log in or sign up to continue."
@@ -82,18 +77,7 @@ class VehiclesController < ApplicationController
     patch '/vehicles/:id' do
       @vehicle = Vehicle.find_by_id(params[:id])
       params.delete("_method")
-      # http form only allows get and post actions. 
-      #By deleting _method form params hash, (it will actually delete "_method"=>"patch" 
-      #and make it as post action but still patching it because we are user rack::methodoverride.)
       @vehicle.update(params)
-
-      # @vehicle.brand = params[:brand]
-      # @vehicle.model = params[:model]
-      # @vehicle.year = params[:year]
-      # @vehicle.style = params[:style]
-      # @vehicle.color = params[:color]
-      # @vehicle.price = params[:price]
-      # @vehicle.vin_number = params[:vin_number]
         if !@vehicle.update(params)
           @errors = @vehicle.errors.full_messages.to_sentence
           erb :'/vehicles/edit'
