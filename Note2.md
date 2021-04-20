@@ -165,7 +165,7 @@ Helprs do
  *  end
 
 
- *  def authorized_to_edit?(vehicle)
+ *  def authorized_to_edit?(post)
       post.user == current_user
  *  end
 
@@ -182,6 +182,6 @@ end
 # private method exmaple
   private
 
-  def find_vehicle
-    @vehicle = Vehicle.find(params[:id])
+  def find_post
+    @post = Post.find(params[:id])
   end
