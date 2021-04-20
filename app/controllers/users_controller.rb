@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    # get sign up route to render form
     get '/signup' do
         if !session[:user_id] #if session hash does not have a user_id  in the hash, return false.
             erb :'users/create_user'
@@ -7,7 +8,8 @@ class UsersController < ApplicationController
           redirect to('/vehicles')
         end
     end
-
+ 
+    #create new user using sign up form
     post '/signup' do
         #create a new user
         user = User.new(params)
@@ -20,6 +22,7 @@ class UsersController < ApplicationController
             erb :'users/create_user'
         else #if the user saved, that means user has all valid attributes
             #set the session id as user id
+            # post sign up route to create user using params and add key/value pair to sessions hash
             session[:user_id] = user.id #where user actually log in.
             # and redirect the user
             redirect to('/vehicles')
@@ -36,7 +39,7 @@ class UsersController < ApplicationController
         end
     end
       
-    # important!!!    
+    # important!!!   
     # Tip: Here is where we authenticate the user and leverage the session hash to log them in!
     post '/login' do  
         #find the user by username
@@ -46,8 +49,9 @@ class UsersController < ApplicationController
              #.authenticate will actually decrypt the password.
 
             #put the user in the session ==> we are actually going to log our user in, which means we are going to append that user id to the session hash
-            session[:user_id] = user.id #we added user_id key value in session hash. session[:user_id] means add user_id in to the session hash
-            #this is when user actually log in to !!
+            # Add a key/value pair to their sessions hash - THIS ACTUALLY LOGS THE USER IN
+            session[:user_id] = user.id #we added user_id key-value pairs in session hash. session[:user_id] means add user_id in to the session hash
+            #this is where and when user actually log in to !!
             redirect to('/vehicles')
             #redirect them somwhere
           else
@@ -64,6 +68,7 @@ class UsersController < ApplicationController
               flash[:notice] = "You are logged out!"
               redirect to('/')
           else
+            #redirect to home/landing page
               redirect to('/')
           end
     end

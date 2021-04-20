@@ -1,14 +1,18 @@
 Do prioritize
 
 1. what are migrations?
-   => Migrations are what we write to make changes to our database.
-   => Creating the database table
+  ✅=> It creates a table for us.   => Creating the database table
+  ✅=> Migrations are what we write to make changes to our database. 
+
 2. Explain when the schema changes.
-   => after rake db:migration or roll-back
-   => schema.rb; This file shows “current state of the database”
+  ✅=>Every time i run a migration, this gets updated to the current state of my database.
+  ✅=>It doen't keep the database' history. Just current state of my database as it exists right now.
+
 3. in tux, how we access objects through activerecord associations.
    => current_user.vehicles ; will return an array of vehicles that belongs to the current_user object.
 4. Where is the .vehicles method defined?
+  ✅ in active record macro 
+  ✅ (1. build migration 2. build association using ar macro 3. association method)
    => model -> has_many, belongs_to
 
 ## MVC
@@ -17,13 +21,13 @@ At the end of this unit you should be able to explain the MVC flow in your own w
 => The MVC structure allows us to separate our application's concern, ultimately optimizing functionality and code organization.
 
 1. Model => Database
-   1. Logic, this is the one we have to have.
-   2. interfaces in between active record and our database.
+   1. ✅ Logic, this is the one we have to have.
+   2. interfaces in between active record and our ✅ database.
    3. allow us to get to our objects. inherit from ActiveRecord::Base, in charge of our objects
-2. Contoroller => Intermediary for the Model and View
-   1. it works in between the model and the views.
-   2. accept web request from the view, sends them to the model,
-   3. passes data to the view, hold all of our CRUD function.
+2. Contoroller => Intermediary for the Model and View. ✅It is the place where our routes are
+   1. ✅ it works in between the model and the views.
+   2. ✅ accept web request from the view, sends them to the model,
+   3. ✅ passes data to the view, hold all of our CRUD function.
 3. View => The Frontend of our Application
    1. responsible for displaying data to our users and getting data from the user
 
@@ -32,12 +36,12 @@ At the end of this unit you should be able to explain the MVC flow in your own w
 ## rendering vs redirect
 
 - Rendering
-  allows us to pass instance variable through to the erb files
+  ✅ allows us to pass instance variable through to the erb files
   displays the view without submitting an additional request to the server
 - Redirecting
-  Sends a new request to the server
-  can’t pass instance variable because of the statelessness of the server
-  instance variable no longer exists once a new request has been made => http is a stateless protocol
+  ✅ Sends a new request to the server
+  ✅ can’t pass instance variable because of the statelessness of the server
+  ✅ Instance variable no longer exists once a new request has been made => ✅http is a stateless protocol
 
 ### Where do the instance variables in our view files come from — where are they declared and how do we have access to them?
 
@@ -148,6 +152,7 @@ extra notes
 1. Tip: a flash[:message] has the lifecyle of one GET request and will not show up when rendering an erb file.
 2. Tip: has_secure_password has a built in validation for the password_digest attribute!
 3. By using bracket [] we can access to the hash. e.g ) params = > { a => 1} , params['a'] => "1"
+4. layout => wrapped around everything in my views
 
 
 ## helper do examples
@@ -165,8 +170,8 @@ Helprs do
  *  end
 
 
- *  def authorized_to_edit?(post)
-      post.user == current_user
+ *  def authorized_to_edit?(vehicle)
+      vehicle.user == current_user
  *  end
 
 
@@ -182,6 +187,6 @@ end
 # private method exmaple
   private
 
-  def find_post
-    @post = Post.find(params[:id])
+  def find_vehicle
+    @vehicle = Vehicle.find(params[:id])
   end
