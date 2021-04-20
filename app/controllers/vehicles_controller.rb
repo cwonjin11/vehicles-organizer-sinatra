@@ -37,7 +37,7 @@ class VehiclesController < ApplicationController
       end
     end  
   
-    get '/vehicles/:id' do  # this is a dynamic route
+    get '/vehicles/:id' do 
       if logged_in? 
         @vehicle = Vehicle.find_by_id(params[:id])
           if @vehicle == nil
