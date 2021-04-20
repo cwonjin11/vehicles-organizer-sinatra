@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         if !session[:user_id] 
             erb :'users/create_user'
         else
-          redirect to('/vehicles')
+          redirect to('/vehicles') 
         end
     end
  
