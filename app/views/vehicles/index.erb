@@ -7,8 +7,13 @@
   <h2>You have total <span class="red">	&#128663; <%= @vehicles.size %></span> cars!!</h2>
   <a href="/vehicles/new"> <button class="button2 button2"> &#10133; Add a new vehicle &#128664; </button> </a>
   <ol class="column-list">  
+<<<<<<< HEAD
       <% @vehicles.order(id: :desc, brand: :asc, model: :asc, year: :desc).each do |vehicle|%>
       <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand %> <%= vehicle.model %> <%= vehicle.year %></a></b></li>
+=======
+      <% @vehicles.order(id: :desc).each do |vehicle|%>
+      <li><b><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.brand.capitalize %> <%= vehicle.model.upcase%> <%= vehicle.year %></a></b></li>
+>>>>>>> a4070289c27e6112637a0f58a8fe9ef63289c1c3
       <% end %>
   </ol>
 
