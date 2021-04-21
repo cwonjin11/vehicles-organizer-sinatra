@@ -21,12 +21,15 @@ class VehiclesController < ApplicationController
       end
     end
 
+
     post '/vehicles' do
       if logged_in?
           @vehicle = current_user.vehicles.build(params)
         if !@vehicle.save 
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
+        else
+          redirect to("/vehicles/#{@vehicle.id}")
         end
       else
         flash[:notice] = "Please log in or sign up to continue."
