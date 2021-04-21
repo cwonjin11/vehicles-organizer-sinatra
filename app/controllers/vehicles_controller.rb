@@ -27,9 +27,6 @@ class VehiclesController < ApplicationController
         if !@vehicle.save 
           @errors = @vehicle.errors.full_messages
           erb :'/vehicles/new'
-        else
-          flash[:notice] = "Vehicle successfully created!"
-          redirect to("/vehicles/#{@vehicle.id}") 
         end
       else
         flash[:notice] = "Please log in or sign up to continue."
